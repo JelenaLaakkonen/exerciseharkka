@@ -2,6 +2,7 @@ package com.example.exercise;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,8 @@ import com.example.exercise.domain.Mood;
 import com.example.exercise.domain.MoodRepository;
 import com.example.exercise.domain.User;
 import com.example.exercise.domain.UserRepository;
+import com.example.exercise.domain.Image;
+import com.example.exercise.domain.ImageRepository;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
@@ -29,6 +32,9 @@ public class ExerciseRepositoryTest {
 
 	@Autowired
 	private UserRepository uRepository;
+	
+	@Autowired
+	private ImageRepository iRepository;
 
 	@Test
 	public void findByTitleShouldReturnExercise() {
@@ -39,7 +45,9 @@ public class ExerciseRepositoryTest {
 
 	@Test
 	public void createNewExercise() {
-		Exercise exercise = new Exercise(new Mood("Neutral"), "Hiking", "05.04.2021", 100, 1.0, "Nice views");
+		LocalDate d3 = LocalDate.parse("2021-02-21");
+		
+		Exercise exercise = new Exercise(new Mood("Neutral"), new Image("Foggy"), "Hiking", d3, 100, 1.0, "Nice views");
 		eRepository.save(exercise);
 		assertThat(exercise.getExerciseId()).isNotNull();
 	}
