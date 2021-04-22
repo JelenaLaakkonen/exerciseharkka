@@ -1,5 +1,9 @@
 package com.example.exercise.domain;
 
+
+
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,8 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 public class Exercise {
+	@ManyToOne
+	@JoinColumn(name = "imageId")
+	private Image image;
 	@ManyToOne
 	@JoinColumn(name = "moodId")
 	private Mood mood;
@@ -16,7 +27,8 @@ public class Exercise {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long exerciseId;
 	private String title;
-	private String date;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate date;
 	private int pulse;
 	private double duration;
 	private String notes;
@@ -24,9 +36,10 @@ public class Exercise {
 	public Exercise() {
 	}
 
-	public Exercise(Mood mood, String title, String date, int pulse, double duration, String notes) {
+	public Exercise(Mood mood, Image image, String title, LocalDate date, int pulse, double duration, String notes) {
 		super();
 		this.mood = mood;
+		this.image = image;
 		this.title = title;
 		this.date = date;
 		this.pulse = pulse;
@@ -40,6 +53,14 @@ public class Exercise {
 
 	public void setMood(Mood mood) {
 		this.mood = mood;
+	}
+	
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
 	}
 
 	public Long getExerciseId() {
@@ -57,12 +78,12 @@ public class Exercise {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
-	public String getDate() {
+	
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
@@ -92,8 +113,10 @@ public class Exercise {
 
 	@Override
 	public String toString() {
-		return "Exercise [exerciseId=" + exerciseId + ", title=" + title + ", date=" + date + ", pulse=" + pulse
-				+ ", duration=" + duration + ", notes=" + notes + "]";
+		return "Exercise [image=" + image + ", mood=" + mood + ", exerciseId=" + exerciseId + ", title=" + title
+				+ ", date=" + date + ", pulse=" + pulse + ", duration=" + duration + ", notes=" + notes + "]";
 	}
+
+	
 	
 }

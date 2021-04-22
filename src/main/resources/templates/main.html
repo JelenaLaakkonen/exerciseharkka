@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	<h1 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]!</h1>
+	<h1 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]! <img src="../static/images/sunny.png" th:src="@{images/sunny.png}" /></h1>
 	<h2>Exercises</h2>
 	<table class="table table-striped">
 		<tbody>
@@ -20,6 +20,7 @@
 				<th>Duration</th>
 				<th>Notes</th>
 				<th>Mood</th>
+				<th>Weather</th>
 			</tr>
 			<tr th:each="exercise : ${exercises}">
 				<td th:text="${exercise.title}"></td>
@@ -28,6 +29,7 @@
 				<td th:text="${exercise.duration}"></td>
 				<td th:text="${exercise.notes}"></td>
 				<td th:text="${exercise.mood.name}"></td>
+				<td><img th:src="@{images/{i}.png(i=${exercise.image.name})}" ></td>
 				<td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-danger"
 					th:href="@{/delete/{exerciseId}(exerciseId=${exercise.exerciseId})}">Delete</a></td>
 				<td><a class="btn btn-success"
@@ -37,8 +39,6 @@
 	</table>
 
 	<a href="/addexercise" class="btn btn-success">Add Work-out</a>
-	
-	<img alt="Image" th:src="@{image/userprofile}" width="250" height="250"/>
 
 	<form th:action="@{/logout}" method="post">
 		<input type="submit" value="Sign Out" />

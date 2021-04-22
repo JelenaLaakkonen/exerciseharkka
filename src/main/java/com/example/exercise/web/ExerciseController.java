@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.exercise.domain.Exercise;
 import com.example.exercise.domain.ExerciseRepository;
+import com.example.exercise.domain.ImageRepository;
 import com.example.exercise.domain.MoodRepository;
 
 @Controller
@@ -23,7 +24,9 @@ public class ExerciseController {
 	private ExerciseRepository eRepository;
 	@Autowired
 	private MoodRepository mRepository;
-
+	@Autowired
+	private ImageRepository iRepository;
+	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String ExerciseList(Model model) {
 		model.addAttribute("exercises", eRepository.findAll());
@@ -46,6 +49,7 @@ public class ExerciseController {
 		public String addExercise(Model model) {
 			model.addAttribute("exercise", new Exercise());
 			model.addAttribute("moods", mRepository.findAll());
+			model.addAttribute("images", iRepository.findAll());
 			return "addexercise";
 		}
 
@@ -66,6 +70,7 @@ public class ExerciseController {
 		public String editExercise(@PathVariable("exerciseId") Long exerciseId, Model model) {
 			model.addAttribute("exercise", eRepository.findById(exerciseId));
 			model.addAttribute("moods", mRepository.findAll());
+			model.addAttribute("images", iRepository.findAll());
 			return "edit";
 		}
 }

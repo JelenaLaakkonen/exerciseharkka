@@ -1,12 +1,22 @@
 package com.example.exercise;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.format.datetime.DateFormatter;
 
 import com.example.exercise.domain.Exercise;
 import com.example.exercise.domain.ExerciseRepository;
+import com.example.exercise.domain.Image;
+import com.example.exercise.domain.ImageRepository;
 import com.example.exercise.domain.Mood;
 import com.example.exercise.domain.MoodRepository;
 import com.example.exercise.domain.User;
@@ -20,7 +30,7 @@ public class ExerciseApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(ExerciseRepository eRepository, MoodRepository mRepository, UserRepository uRepository) {
+	public CommandLineRunner demo(ExerciseRepository eRepository, MoodRepository mRepository, ImageRepository iRepository, UserRepository uRepository) {
 		return (args) -> {
 
 			Mood m1 = new Mood("Lethargic");
@@ -29,8 +39,17 @@ public class ExerciseApplication {
 			mRepository.save(m1);
 			mRepository.save(m2);
 			
-			Exercise e1 = new Exercise(m1, "Running", "2020-2-2", 120, 1.5, "Muscles sore after");
-			Exercise e2 = new Exercise(m2, "Streching", "2021-2-3", 60, 0.5, "Felt relaxed after");
+			Image i1 = new Image("sunny");
+			Image i2 = new Image("cloudy");
+
+			iRepository.save(i1);
+			iRepository.save(i2);
+			
+			LocalDate d1 = LocalDate.parse("2021-02-20");
+			LocalDate d2 = LocalDate.parse("2021-02-21");
+			
+			Exercise e1 = new Exercise(m1, i1, "Running", d1, 120, 1.5, "Muscles sore after");
+			Exercise e2 = new Exercise(m2, i2, "Streching", d2, 60, 0.5, "Felt relaxed after");
 
 			eRepository.save(e1);
 			eRepository.save(e2);
