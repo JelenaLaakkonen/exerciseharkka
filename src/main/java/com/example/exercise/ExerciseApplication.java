@@ -1,18 +1,10 @@
 package com.example.exercise;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.format.datetime.DateFormatter;
-
 import com.example.exercise.domain.Exercise;
 import com.example.exercise.domain.ExerciseRepository;
 import com.example.exercise.domain.Image;

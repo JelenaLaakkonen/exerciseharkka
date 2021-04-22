@@ -1,7 +1,5 @@
 package com.example.exercise.domain;
 
-
-
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
@@ -12,8 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Exercise {
@@ -116,7 +112,5 @@ public class Exercise {
 		return "Exercise [image=" + image + ", mood=" + mood + ", exerciseId=" + exerciseId + ", title=" + title
 				+ ", date=" + date + ", pulse=" + pulse + ", duration=" + duration + ", notes=" + notes + "]";
 	}
-
-	
 	
 }
