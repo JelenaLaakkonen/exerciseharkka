@@ -19,7 +19,6 @@ public class Mood {
 	private Long moodId;
 	private String name;
 
-	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "mood")
 	private List<Exercise> exercises;
 
@@ -47,6 +46,7 @@ public class Mood {
 		this.name = name;
 	}
 
+	@JsonIgnore
 	public List<Exercise> getExerises() {
 		return exercises;
 	}

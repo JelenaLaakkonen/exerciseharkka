@@ -27,15 +27,19 @@ public class ExerciseApplication {
 
 			Mood m1 = new Mood("Lethargic");
 			Mood m2 = new Mood("Energetic");
+			Mood m3 = new Mood("Neutral");
 
 			mRepository.save(m1);
 			mRepository.save(m2);
+			mRepository.save(m3);
 			
 			Image i1 = new Image("sunny");
 			Image i2 = new Image("cloudy");
+			Image i3 = new Image("rainy");
 
 			iRepository.save(i1);
 			iRepository.save(i2);
+			iRepository.save(i3);
 			
 			LocalDate d1 = LocalDate.parse("2021-02-20");
 			LocalDate d2 = LocalDate.parse("2021-02-21");

@@ -35,7 +35,7 @@ public class ExerciseController {
 	
 	// REST all exercises
 		@RequestMapping(value = "/exercises", method = RequestMethod.GET)
-		public @ResponseBody List<Exercise> exercisesRest() {
+		public @ResponseBody List<Exercise> exerciseRest() {
 			return (List<Exercise>) eRepository.findAll();
 		}
 

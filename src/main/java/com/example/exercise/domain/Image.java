@@ -20,7 +20,6 @@ public class Image {
 	private Long imageId;
 	private String name;
 
-	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "image")
 	private List<Exercise> exercises;
 
@@ -48,12 +47,14 @@ public class Image {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	@JsonIgnore
 	public List<Exercise> getExerises() {
 		return exercises;
 	}
-
+	
+	
 	public void setExercises(List<Exercise> exercises) {
 		this.exercises = exercises;
 	}
+
 }

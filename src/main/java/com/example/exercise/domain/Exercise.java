@@ -112,5 +112,5 @@ public class Exercise {
 		return "Exercise [image=" + image + ", mood=" + mood + ", exerciseId=" + exerciseId + ", title=" + title
 				+ ", date=" + date + ", pulse=" + pulse + ", duration=" + duration + ", notes=" + notes + "]";
 	}
-	
+
 }
